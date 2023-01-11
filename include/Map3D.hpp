@@ -15,7 +15,7 @@ public:
 
     void addCoordinate(double x, double y, double z)
     {
-        cords.push_back({x, y, z, 1});
+        cords.push_back({x, y, z});
 		transformedCords.push_back({});
 		edges.push_back({});
     }
@@ -34,7 +34,7 @@ public:
 
 private:
 	std::vector<std::vector<int>> edges;
-    std::vector<std::array<double, 4>> cords;
-	std::vector<std::array<double, 4>> transformedCords;
+    std::vector<std::array<double, 3>> cords;
+	std::vector<std::array<double, 3>> transformedCords;
     Matrix transformMatrix;
 };

@@ -32,14 +32,14 @@ SRCS	=	$(addsuffix .cpp, \
 			MouseState))
 
 # get all cpp files
-# @ls [path] | grep '\.cpp$' | sed 's/\.cpp$//' | tr '\n' ' ' && echo
+# ls [path] | grep '\.cpp$' | sed 's/\.cpp$//' | tr '\n' ' ' && echo
 
 OBJS	=	$(subst $(SRCDIR), $(OBJDIR), $(subst .cpp,.o,$(SRCS)))
 
 CC				= clang++
 INCLUDE_FLAGS	= -I/usr/include/SDL2 -I./include
 LINKER_FLAGS	= -lSDL2 -lGL
-CFLAGS			= #-Wall -Wextra -Werror -fsanitize=address
+CFLAGS			= -Wall -Wextra -Werror -fsanitize=address
 RM				= rm -rf
 NAME			= vector
 
@@ -49,7 +49,7 @@ all: $(NAME)
 
 $(NAME): $(OBJS) main.cpp
 	$(CC) $(CFLAGS) $(OBJS) main.cpp $(INCLUDE_FLAGS) $(LINKER_FLAGS) -o $(NAME)
-	
+
 $(OBJDIR)%.o: $(SRCDIR)%.cpp
 	@$(shell mkdir -p $(@D))
 	$(CC) $(CFLAGS) $(INCLUDE_FLAGS) -c $< -o $@

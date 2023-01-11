@@ -1,9 +1,10 @@
 #include <matrix.hpp>
 
-void Matrix::apply_translation(double dx, double dy, double dz)
+void Matrix::applyTranslation(double dx, double dy, double dz)
 {
-	
-	data_[0][3] += dx;
-	data_[1][3] += dy;
-	data_[2][3] += dz;
+	Matrix newTransform = {{{1, 0, 0, dx},
+							{0, 1, 0, dy},
+							{0, 0, 1, dz},
+							{0, 0, 0, 0}}};
+	*this *= newTransform;
 }
